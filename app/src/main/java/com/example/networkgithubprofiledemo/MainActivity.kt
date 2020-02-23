@@ -21,6 +21,11 @@ class MainActivity : AppCompatActivity() {
     // https://api.github.com/users/NathanielAParizi/repos
     // https://api.github.com/search/users?q=nathanielaparizi
 
+   val profileFragment by lazy{ProfileFragment()}
+    val repoFragment by lazy{RepoFragment()}
+    lateinit var profileData : String
+    lateinit var repoData : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -29,12 +29,11 @@ class UserAdapter(val resultList: List<Item>) : RecyclerView.Adapter<UserAdapter
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun populateItem(result: Item) {
+        fun populateItem(item: Item) {
+            itemView.txt1.text = "${item.login} ${item.id}"
+            itemView.txt2.text = item.node_id
 
-            itemView.txt1.text = "${result.login} ${result.login}"
-            itemView.txt2.text = "${result.repos_url}"
-            itemView.txt3.text = "${result.id}"
-            Glide.with(itemView).load(result.avatar_url).into(itemView.imgView)
+            Glide.with(itemView).load(item.avatar_url).into(itemView.imgView)
 
         }
     }

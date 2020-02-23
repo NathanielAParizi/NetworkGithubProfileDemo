@@ -2,11 +2,15 @@ package com.example.networkgithubprofiledemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+
+import com.example.networkgithubprofiledemo.Datasource.Remote.HttpUrlConnectionHelper
 import com.example.networkgithubprofiledemo.Datasource.Remote.OkHttpHelper
 import com.example.networkgithubprofiledemo.Model.User.UserResponse
 import com.example.networkgithubprofiledemo.View.Adapter.UserAdapter
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -43,18 +47,15 @@ class MainActivity : AppCompatActivity() {
 
         when (view.id) {
 
-            R.id.btn -> executeAsyncHttpOkCall()
+            R.id.btn -> executeAsyncOkHttpCall()
+
 
         }
     }
-
-    private fun executeAsyncHttpOkCall() {
-        //SocketException in stacktrace
-
-//        val githubUser = "https://api.github.com/search/users?q=nathanielaparizi"
-//        val okHttpHelper = OkHttpHelper()
-//        okHttpHelper.makeAsyncApiCall(githubUser)
+    private fun executeAsyncOkHttpCall() {
+        val randomUserURL = "https://api.github.com/search/users?q=nathanielaparizi"
+        val okHttpHelper = OkHttpHelper()
+        okHttpHelper.makeAsyncApiCall(randomUserURL)
     }
-
 
 }

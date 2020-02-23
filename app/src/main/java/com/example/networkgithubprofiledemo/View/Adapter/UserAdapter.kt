@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.networkgithubprofiledemo.Model.User.Item
+import com.example.networkgithubprofiledemo.Model.User.UserRepos
+import com.example.networkgithubprofiledemo.Model.User.UserResponse
 import com.example.networkgithubprofiledemo.R
 import kotlinx.android.synthetic.main.item_list_row.view.*
 
@@ -30,10 +31,10 @@ class UserAdapter(val resultList: List<Item>) : RecyclerView.Adapter<UserAdapter
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun populateItem(item: Item) {
-            itemView.txt1.text = "${item.login} ${item.id}"
-            itemView.txt2.text = item.node_id
 
-            Glide.with(itemView).load(item.avatar_url).into(itemView.imgView)
+            itemView.txtRepo1.text = "${item.login}"
+            itemView.txtRepo2.text = item.node_id
+            itemView.txtRepo3.text = item.type
 
         }
     }

@@ -5,12 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 
-import com.example.networkgithubprofiledemo.Datasource.Remote.HttpUrlConnectionHelper
 import com.example.networkgithubprofiledemo.Datasource.Remote.OkHttpHelper
 import com.example.networkgithubprofiledemo.Model.User.UserResponse
 import com.example.networkgithubprofiledemo.View.Adapter.UserAdapter
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -18,13 +17,6 @@ import org.greenrobot.eventbus.ThreadMode
 
 class MainActivity : AppCompatActivity() {
 
-    // https://api.github.com/users/NathanielAParizi/repos
-    // https://api.github.com/search/users?q=nathanielaparizi
-
-   val profileFragment by lazy{ProfileFragment()}
-    val repoFragment by lazy{RepoFragment()}
-    lateinit var profileData : String
-    lateinit var repoData : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,9 +36,21 @@ class MainActivity : AppCompatActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onUserResponse(userResponse: UserResponse) {
+
+
+        txt1.text = "${userResponse.items[0].login}"
+        txt2.text = "${userResponse.items[0].id}"
+        txt3.text = "${userResponse.items[0].score}"
+        Glide.with(this).load(userResponse.items[0].avatar_url).into(imgView)
+
+        Log.d("TAG","repo executed")
         rvList.layoutManager = LinearLayoutManager(this)
         rvList.adapter = UserAdapter(userResponse.items)
+
     }
+
+
+
 
     fun onClick(view: View) {
 
@@ -57,10 +61,21 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
     private fun executeAsyncOkHttpCall() {
-        val randomUserURL = "https://api.github.com/search/users?q=nathanielaparizi"
+
+        // URLS
+        // https://api.github.com/users/NathanielAParizi/repos
+        // https://api.github.com/search/users?q=nathanielaparizi
+
+        val url = "https://api.github.com/search/users?q=nathanielaparizi"
         val okHttpHelper = OkHttpHelper()
-        okHttpHelper.makeAsyncApiCall(randomUserURL)
+        okHttpHelper.makeAsyncApiCall(url)
+
+
+
+
     }
+
 
 }

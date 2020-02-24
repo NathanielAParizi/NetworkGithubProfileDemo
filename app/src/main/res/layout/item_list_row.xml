@@ -17,18 +17,24 @@
             android:id="@+id/txtRepo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="Name" />
 
         <TextView
             android:id="@+id/txtRepo2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="TextView" />
 
         <TextView
             android:id="@+id/txtRepo3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+
             android:text="TextView" />
 
     </LinearLayout>
